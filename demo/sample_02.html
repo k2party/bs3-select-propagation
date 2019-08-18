@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta http-equiv="content-type" content="text/html;charset=UTF-8">
+<meta http-equiv="x-ua-compatible" content="IE=edge">
+<title>bs3-select-propagion</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.10/css/bootstrap-select.css">
+</head>
+<body>
+<div class="container">
+	<div class="row">
+		<div class="col-md-5">
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h5 class="panel-title">Ajaxを使わないサンプル</h5>
+	</div>
+	<div class="panel-body">
+	<div class="row">
+		<label class="col-md-3 control-label">都道府県</label>
+		<div class="col-md-9 form-group">
+			<select name="pref" class="select form-control pref" data-select-propagation="select.city">
+				<option value="">選択してください</option>
+				<option value="1">北海道</option>
+				<option value="2">青森県</option>
+				<option value="3">岩手県</option>
+				<option value="4">宮城県</option>
+				<option value="5">秋田県</option>
+				<option value="6">山形県</option>
+				<option value="7">福島県</option>
+				<option value="8">茨城県</option>
+				<option value="9">栃木県</option>
+				<option value="10">群馬県</option>
+				<option value="11">埼玉県</option>
+				<option value="12">千葉県</option>
+				<option value="13">東京都</option>
+				<option value="14">神奈川県</option>
+				<option value="15">新潟県</option>
+				<option value="16">富山県</option>
+				<option value="17">石川県</option>
+				<option value="18">福井県</option>
+				<option value="19">山梨県</option>
+				<option value="20">長野県</option>
+				<option value="21">岐阜県</option>
+				<option value="22">静岡県</option>
+				<option value="23">愛知県</option>
+				<option value="24">三重県</option>
+				<option value="25">滋賀県</option>
+				<option value="26">京都府</option>
+				<option value="27">大阪府</option>
+				<option value="28">兵庫県</option>
+				<option value="29">奈良県</option>
+				<option value="30">和歌山県</option>
+				<option value="31">鳥取県</option>
+				<option value="32">島根県</option>
+				<option value="33">岡山県</option>
+				<option value="34">広島県</option>
+				<option value="35">山口県</option>
+				<option value="36">徳島県</option>
+				<option value="37">香川県</option>
+				<option value="38">愛媛県</option>
+				<option value="39">高知県</option>
+				<option value="40">福岡県</option>
+				<option value="41">佐賀県</option>
+				<option value="42">長崎県</option>
+				<option value="43">熊本県</option>
+				<option value="44">大分県</option>
+				<option value="45">宮崎県</option>
+				<option value="46">鹿児島県</option>
+				<option value="47">沖縄県</option>
+			</select>
+		</div>
+	</div>
+	
+	<div class="row">
+		<label class="col-md-3 control-label">政令指定市</label>
+		<div class="col-md-9 form-group">
+			<select name="city" class="select form-control city" data-select-propagation="select.ward">
+				<option value="">選択してください</option>
+				<option data-group="1" value="11002">札幌市</option>
+				<option data-group="4" value="41009">仙台市</option>
+				<option data-group="11" value="111007">さいたま市</option>
+				<option data-group="12" value="121002">千葉市</option>
+				<option data-group="14" value="141003">横浜市</option>
+				<option data-group="14" value="141305">川崎市</option>
+				<option data-group="14" value="141500">相模原市</option>
+				<option data-group="15" value="151009">新潟市</option>
+				<option data-group="22" value="221007">静岡市</option>
+				<option data-group="22" value="221309">浜松市</option>
+				<option data-group="23" value="231002">名古屋市</option>
+				<option data-group="26" value="261009">京都市</option>
+				<option data-group="27" value="271004">大阪市</option>
+				<option data-group="27" value="271403">堺市</option>
+				<option data-group="28" value="281000">神戸市</option>
+				<option data-group="33" value="331007">岡山市</option>
+				<option data-group="34" value="341002">広島市</option>
+				<option data-group="40" value="401005">北九州市</option>
+				<option data-group="40" value="401307">福岡市</option>
+				<option data-group="43" value="431001">熊本市</option>
+			</select>
+		</div>
+	</div>
+	
+	<div class="row">
+		<label class="col-md-3 control-label">行政区</label>
+		<div class="col-md-9 form-group">
+			<select name="ward" class="select form-control ward" data-selected-text-format="count > 4" multiple="multiple">
+				<option data-group="11002">中央区</option>
+				<option data-group="11002">北区</option>
+				<option data-group="11002">東区</option>
+				<option data-group="11002">白石区</option>
+				<option data-group="11002">豊平区</option>
+				<option data-group="11002">南区</option>
+				<option data-group="11002">西区</option>
+				<option data-group="11002">厚別区</option>
+				<option data-group="11002">手稲区</option>
+				<option data-group="11002">清田区</option>
+				<option data-group="41009">青葉区</option>
+				<option data-group="41009">宮城野区</option>
+				<option data-group="41009">若林区</option>
+				<option data-group="41009">太白区</option>
+				<option data-group="41009">泉区</option>
+				<option data-group="111007">西区</option>
+				<option data-group="111007">北区</option>
+				<option data-group="111007">大宮区</option>
+				<option data-group="111007">見沼区</option>
+				<option data-group="111007">中央区</option>
+				<option data-group="111007">桜区</option>
+				<option data-group="111007">浦和区</option>
+				<option data-group="111007">南区</option>
+				<option data-group="111007">緑区</option>
+				<option data-group="111007">岩槻区</option>
+				<option data-group="121002">中央区</option>
+				<option data-group="121002">花見川区</option>
+				<option data-group="121002">稲毛区</option>
+				<option data-group="121002">若葉区</option>
+				<option data-group="121002">緑区</option>
+				<option data-group="121002">美浜区</option>
+				<option data-group="141003">鶴見区</option>
+				<option data-group="141003">神奈川区</option>
+				<option data-group="141003">西区</option>
+				<option data-group="141003">中区</option>
+				<option data-group="141003">南区</option>
+				<option data-group="141003">港南区</option>
+				<option data-group="141003">保土ケ谷区</option>
+				<option data-group="141003">旭区</option>
+				<option data-group="141003">磯子区</option>
+				<option data-group="141003">金沢区</option>
+				<option data-group="141003">港北区</option>
+				<option data-group="141003">緑区</option>
+				<option data-group="141003">青葉区</option>
+				<option data-group="141003">都筑区</option>
+				<option data-group="141003">戸塚区</option>
+				<option data-group="141003">栄区</option>
+				<option data-group="141003">泉区</option>
+				<option data-group="141003">瀬谷区</option>
+				<option data-group="141305">川崎区</option>
+				<option data-group="141305">幸区</option>
+				<option data-group="141305">中原区</option>
+				<option data-group="141305">高津区</option>
+				<option data-group="141305">宮前区</option>
+				<option data-group="141305">多摩区</option>
+				<option data-group="141305">麻生区</option>
+				<option data-group="141500">緑区</option>
+				<option data-group="141500">中央区</option>
+				<option data-group="141500">南区</option>
+				<option data-group="151009">北区</option>
+				<option data-group="151009">東区</option>
+				<option data-group="151009">中央区</option>
+				<option data-group="151009">江南区</option>
+				<option data-group="151009">秋葉区</option>
+				<option data-group="151009">南区</option>
+				<option data-group="151009">西区</option>
+				<option data-group="151009">西蒲区</option>
+				<option data-group="221007">葵区</option>
+				<option data-group="221007">駿河区</option>
+				<option data-group="221007">清水区</option>
+				<option data-group="221309">中区</option>
+				<option data-group="221309">東区</option>
+				<option data-group="221309">西区</option>
+				<option data-group="221309">南区</option>
+				<option data-group="221309">北区</option>
+				<option data-group="221309">浜北区</option>
+				<option data-group="221309">天竜区</option>
+				<option data-group="231002">千種区</option>
+				<option data-group="231002">東区</option>
+				<option data-group="231002">北区</option>
+				<option data-group="231002">西区</option>
+				<option data-group="231002">中村区</option>
+				<option data-group="231002">中区</option>
+				<option data-group="231002">昭和区</option>
+				<option data-group="231002">瑞穂区</option>
+				<option data-group="231002">熱田区</option>
+				<option data-group="231002">中川区</option>
+				<option data-group="231002">港区</option>
+				<option data-group="231002">南区</option>
+				<option data-group="231002">守山区</option>
+				<option data-group="231002">緑区</option>
+				<option data-group="231002">名東区</option>
+				<option data-group="231002">天白区</option>
+				<option data-group="261009">北区</option>
+				<option data-group="261009">上京区</option>
+				<option data-group="261009">左京区</option>
+				<option data-group="261009">中京区</option>
+				<option data-group="261009">東山区</option>
+				<option data-group="261009">下京区</option>
+				<option data-group="261009">南区</option>
+				<option data-group="261009">右京区</option>
+				<option data-group="261009">伏見区</option>
+				<option data-group="261009">山科区</option>
+				<option data-group="261009">西京区</option>
+				<option data-group="271004">都島区</option>
+				<option data-group="271004">福島区</option>
+				<option data-group="271004">此花区</option>
+				<option data-group="271004">西区</option>
+				<option data-group="271004">港区</option>
+				<option data-group="271004">大正区</option>
+				<option data-group="271004">天王寺区</option>
+				<option data-group="271004">浪速区</option>
+				<option data-group="271004">西淀川区</option>
+				<option data-group="271004">東淀川区</option>
+				<option data-group="271004">東成区</option>
+				<option data-group="271004">生野区</option>
+				<option data-group="271004">旭区</option>
+				<option data-group="271004">城東区</option>
+				<option data-group="271004">阿倍野区</option>
+				<option data-group="271004">住吉区</option>
+				<option data-group="271004">東住吉区</option>
+				<option data-group="271004">西成区</option>
+				<option data-group="271004">淀川区</option>
+				<option data-group="271004">鶴見区</option>
+				<option data-group="271004">住之江区</option>
+				<option data-group="271004">平野区</option>
+				<option data-group="271004">北区</option>
+				<option data-group="271004">中央区</option>
+				<option data-group="271403">堺区</option>
+				<option data-group="271403">中区</option>
+				<option data-group="271403">東区</option>
+				<option data-group="271403">西区</option>
+				<option data-group="271403">南区</option>
+				<option data-group="271403">北区</option>
+				<option data-group="271403">美原区</option>
+				<option data-group="281000">東灘区</option>
+				<option data-group="281000">灘区</option>
+				<option data-group="281000">兵庫区</option>
+				<option data-group="281000">長田区</option>
+				<option data-group="281000">須磨区</option>
+				<option data-group="281000">垂水区</option>
+				<option data-group="281000">北区</option>
+				<option data-group="281000">中央区</option>
+				<option data-group="281000">西区</option>
+				<option data-group="331007">北区</option>
+				<option data-group="331007">中区</option>
+				<option data-group="331007">東区</option>
+				<option data-group="331007">南区</option>
+				<option data-group="341002">中区</option>
+				<option data-group="341002">東区</option>
+				<option data-group="341002">南区</option>
+				<option data-group="341002">西区</option>
+				<option data-group="341002">安佐南区</option>
+				<option data-group="341002">安佐北区</option>
+				<option data-group="341002">安芸区</option>
+				<option data-group="341002">佐伯区</option>
+				<option data-group="401005">門司区</option>
+				<option data-group="401005">若松区</option>
+				<option data-group="401005">戸畑区</option>
+				<option data-group="401005">小倉北区</option>
+				<option data-group="401005">小倉南区</option>
+				<option data-group="401005">八幡東区</option>
+				<option data-group="401005">八幡西区</option>
+				<option data-group="401307">東区</option>
+				<option data-group="401307">博多区</option>
+				<option data-group="401307">中央区</option>
+				<option data-group="401307">南区</option>
+				<option data-group="401307">西区</option>
+				<option data-group="401307">城南区</option>
+				<option data-group="401307">早良区</option>
+				<option data-group="431001">中央区</option>
+				<option data-group="431001">東区</option>
+				<option data-group="431001">西区</option>
+				<option data-group="431001">南区</option>
+				<option data-group="431001">北区</option>
+			</select>
+		</div>
+	</div>
+	</div><!-- panel-body -->
+</div><!-- panel -->
+		</div><!-- col-md-5 -->
+	</div><!-- row -->
+</div><!-- container -->
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.10/js/bootstrap-select.js"></script>
+<script type="text/javascript" src="resources/selectpicker-propagation.js"></script>
+<script type="text/javascript">
+(function($) {
+	$('select.select').each(function() {
+		var $target = $(this);
+		$target.selectpicker($.extend({
+			'multipleSeparator': ', ',
+			'selectedTextFormat': 'count > 3',
+			'countSelectedText' : '{0}件選択中',
+			'noneSelectedText': '指定しない',
+			'selectAllText': '全て選択',
+			'deselectAllText': 'クリア',
+			'actionsBox': true,
+			'showTick': true,
+		}, $target.data()));
+	});
+	$('select[data-select-propagation]').each(function() {
+		var $target = $(this);
+		$target.propagation($target.data());
+	});
+})(jQuery);
+</script>
+</body>
+</html>

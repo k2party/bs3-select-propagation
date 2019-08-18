@@ -1,0 +1,36 @@
+{
+  "name": "@k2party/bs3-select-propagation",
+  "version": "1.0.0",
+  "description": "k2party bs3-select-propagation",
+  "main": "index.js",
+  "author": "k2party <komekomeparty@gmail.com> (https://github.com/k2party)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/k2party/bs3-select-propagation.git"
+  },
+  "bugs": {
+    "url": "https://github.com/k2party/bs3-select-propagation/issues"
+  },
+  "homepage": "https://github.com/k2party/bs3-select-propagation#readme",
+  "scripts": {
+    "dev": "NODE_ENV=development webpack --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "watch": "NODE_ENV=development webpack --config=node_modules/laravel-mix/setup/webpack.config.js --watch",
+    "prod": "NODE_ENV=production  webpack --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "bootstrap": "^3.4.1",
+    "bootstrap-select": "^1.13.10",
+    "jquery": "^1.12.4"
+  },
+  "devDependencies": {
+    "laravel-mix": "^4.1.2",
+    "vue-template-compiler": "^2.6.10",
+    "webpack": "^4.39.1",
+    "webpack-cli": "^3.3.6"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
