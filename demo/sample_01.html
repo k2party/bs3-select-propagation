@@ -34,7 +34,7 @@
 				<option value="11">埼玉県</option>
 				<option value="12">千葉県</option>
 				<option value="13">東京都</option>
-				<option value="14">神奈川県</option>
+				<option value="14" selected>神奈川県</option>
 				<option value="15">新潟県</option>
 				<option value="16">富山県</option>
 				<option value="17">石川県</option>
@@ -75,7 +75,7 @@
 	<div class="row">
 		<label class="col-md-3 control-label">政令指定市</label>
 		<div class="col-md-9 form-group">
-			<select name="city" class="select form-control city" data-select-ajax="sample_01_city.php" data-select-propagation="select.ward">
+			<select name="city" class="select form-control city" data-select-ajax="sample_01_city.php" data-select-propagation="select.ward" data-select-value="141003">
 				<option value="">選択してください</option>
 			</select>
 		</div>
@@ -84,7 +84,7 @@
 	<div class="row">
 		<label class="col-md-3 control-label">行政区</label>
 		<div class="col-md-9 form-group">
-			<select name="ward" class="select form-control ward" data-select-ajax="sample_01_ward.php" data-selected-text-format="count > 4" multiple="multiple">
+			<select name="ward" class="select form-control ward" data-select-ajax="sample_01_ward.php" data-selected-text-format="count > 4" multiple="multiple" data-select-value='["中区","瀬谷区"]'>
 			</select>
 		</div>
 	</div>
@@ -115,6 +115,13 @@
 			'showTick': true,
 		}, $target.data()));
 	});
+// 	$('.city').on('propagation.qss.loaded', function(jqEvent, parameters) {
+// 		console.log('city propagation.qss.loaded', this, jqEvent, parameters);
+// 	});
+// 	$('.ward').on('propagation.qss.loaded', function(jqEvent, parameters) {
+// 		console.log('ward propagation.qss.loaded', this, jqEvent, parameters);
+// 	});
+	
 	$('select[data-select-propagation]').each(function() {
 		var $target = $(this);
 		$target.propagation($target.data());
