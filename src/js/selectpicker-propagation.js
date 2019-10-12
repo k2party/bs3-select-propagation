@@ -11,6 +11,8 @@
 	var PropagationTarget = function($target, options) {
 		this._$target = $target;
 		this._options = $.extend({
+			selectValue: null,
+			selectAlways: false,
 			selectAjax: null,
 			selectpickerRefresh: 'refresh',
 			selectpicker: null,
@@ -63,11 +65,27 @@
 			
 			// option更新後の処理
 			promise.done(function() {
+				// data-select-value属性が設定されていれば、選択状態とする。
+				// data-select-alwaysがtrueの場合は毎回ロードの都度実行。
+				// data-select-alwaysがfalseの場合は初回ロード時のみ実行。
+				if(propagation_target._options.selectValue != null) {
+					if(propagation_target._options.selectAlways || parameters.init) {
+						propagation_target._$target.val(propagation_target._options.selectValue);
+					}
+				}
+
 				// selectpickerを更新
 				if(propagation_target._options.selectpickerRefresh != false
 						&& propagation_target._options.selectpickerRefresh != ''
 						&& propagation_target._options.selectpicker != null) {
 					propagation_target._$target.selectpicker(propagation_target._options.selectpickerRefresh);
+				}
+
+				if(parameters.init) {
+					propagation_target._$target.triggerHandler('propagation.qss.loaded', parameters);
+				}
+				else {
+					propagation_target._$target.triggerHandler('propagation.qss.changed', parameters);
 				}
 
 				// 更に次のselectへ連携する場合、イベント通知する
@@ -164,6 +182,7 @@
 				source: origin? origin.source:this._$target,
 				sourceEvent: origin? origin.sourceEvent:undefined,
 				value: this._$target.val(),
+				init: true,
 			};
 			this._$propagations.triggerHandler('propagation.k2party.selectpicker', parameter);
 		},
@@ -174,6 +193,7 @@
 				source: $(this),
 				sourceEvent: jqEvent,
 				value: $(this).val(),
+				init: false,
 			};
 			this._propagation._$propagations.triggerHandler('propagation.k2party.selectpicker', parameter);
 		},
