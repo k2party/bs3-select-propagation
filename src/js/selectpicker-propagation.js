@@ -14,6 +14,7 @@
 			selectAjax: null,
 			selectpickerRefresh: 'refresh',
 			selectpicker: null,
+			selectOptionHtml: '<option data-group="{0}" value="{1}">{2}</option>',
 		}, options);
 		
 		if(typeof this._options.selectAjax == 'string') {
@@ -92,16 +93,19 @@
 			})
 			.done(function(result) {
 				// ajax実行後（正常時）、ドロップダウンリストの内容を再構築する
-				var html = '';
+				propagation_target._$target.children('[data-group]').remove();
 				result.data.forEach(function(data) {
-					var option = [data, data];
+					var option = [value, data, data];
 					var matcher = data.match(/^([^\s]*)\s+(.*)$/);
 					if(matcher != null) {
-						option = [matcher[1], matcher[2]];
+						option = [value, matcher[1], matcher[2]];
 					}
-					html += '<option value="'+ option[0] + '">' + option[1] + '</option>';
+					var html = propagation_target._options.selectOptionHtml
+						.replace('{0}', option[0])
+						.replace('{1}', option[1])
+						.replace('{2}', option[2]);
+					propagation_target._$target.append(html);
 				});
-				propagation_target._$target.html(html);
 			});
 		},
 		
