@@ -12,6 +12,8 @@
 		this._$target = $target;
 		this._options = $.extend({
 			selectAjax: null,
+			selectpickerRefresh: 'refresh',
+			selectpicker: null,
 		}, options);
 		
 		if(typeof this._options.selectAjax == 'string') {
@@ -19,7 +21,12 @@
 				url: this._options.selectAjax,
 			};
 		}
-
+		
+		// options.selectpickerRefreshがtrueの場合は'refresh'とする
+		if(this._options.selectpickerRefresh === true) {
+			this._options.selectpickerRefresh = 'refresh';
+		}
+		
 		// data-group属性を持つoptionを保持
 		this._$children = $target.children('option[data-group]').clone();
 
@@ -56,7 +63,11 @@
 			// option更新後の処理
 			promise.done(function() {
 				// selectpickerを更新
-				propagation_target._$target.selectpicker('refresh');
+				if(propagation_target._options.selectpickerRefresh != false
+						&& propagation_target._options.selectpickerRefresh != ''
+						&& propagation_target._options.selectpicker != null) {
+					propagation_target._$target.selectpicker(propagation_target._options.selectpickerRefresh);
+				}
 
 				// 更に次のselectへ連携する場合、イベント通知する
 				var propagation = propagation_target._$target.prop('_propagation'); 
@@ -123,6 +134,7 @@
 		this._$propagations = null;
 		this._options = $.extend({
 			selectPropagation: null,
+			selectTrigger: 'change',
 		}, options);
 		
 		if(this._options.selectPropagation != null) {
@@ -133,7 +145,7 @@
 		}
 		
 		// イベントリスナーを登録
-		this._$target.on('changed.bs.select', this._on_change);
+		this._$target.on(this._options.selectTrigger, this._on_change);
 	};
 
 	PropagationPropagator.prototype = {
