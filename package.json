@@ -1,6 +1,6 @@
 {
   "name": "@k2party/bs3-select-propagation",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "k2party bs3-select-propagation",
   "main": "index.js",
   "author": "k2party <komekomeparty@gmail.com> (https://github.com/k2party)",
