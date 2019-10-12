@@ -1,10 +1,10 @@
-# QSS bs3-select-propagation
+# k2party bs3-select-propagation
 
 ## インストール方法
 
 ### パッケージマネージャ（npm）でインストールする場合
 
-npmコマンドでQSSのgitlabサーバから直接ダウンロードします。
+npmコマンドでnpmjsからダウンロードします。
 
 package.jsonのあるディレクトリで、下記のコマンドを実行します。
 
