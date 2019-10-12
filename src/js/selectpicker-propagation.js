@@ -11,7 +11,12 @@
 	var PropagationTarget = function($target, options) {
 		this._$target = $target;
 		this._options = $.extend({
+			selectValue: null,
+			selectAlways: false,
 			selectAjax: null,
+			selectpickerRefresh: 'refresh',
+			selectpicker: null,
+			selectOptionHtml: '<option data-group="{0}" value="{1}">{2}</option>',
 		}, options);
 		
 		if(typeof this._options.selectAjax == 'string') {
@@ -19,7 +24,12 @@
 				url: this._options.selectAjax,
 			};
 		}
-
+		
+		// options.selectpickerRefreshがtrueの場合は'refresh'とする
+		if(this._options.selectpickerRefresh === true) {
+			this._options.selectpickerRefresh = 'refresh';
+		}
+		
 		// data-group属性を持つoptionを保持
 		this._$children = $target.children('option[data-group]').clone();
 
@@ -55,8 +65,28 @@
 			
 			// option更新後の処理
 			promise.done(function() {
+				// data-select-value属性が設定されていれば、選択状態とする。
+				// data-select-alwaysがtrueの場合は毎回ロードの都度実行。
+				// data-select-alwaysがfalseの場合は初回ロード時のみ実行。
+				if(propagation_target._options.selectValue != null) {
+					if(propagation_target._options.selectAlways || parameters.init) {
+						propagation_target._$target.val(propagation_target._options.selectValue);
+					}
+				}
+
 				// selectpickerを更新
-				propagation_target._$target.selectpicker('refresh');
+				if(propagation_target._options.selectpickerRefresh != false
+						&& propagation_target._options.selectpickerRefresh != ''
+						&& propagation_target._options.selectpicker != null) {
+					propagation_target._$target.selectpicker(propagation_target._options.selectpickerRefresh);
+				}
+
+				if(parameters.init) {
+					propagation_target._$target.triggerHandler('propagation.qss.loaded', parameters);
+				}
+				else {
+					propagation_target._$target.triggerHandler('propagation.qss.changed', parameters);
+				}
 
 				// 更に次のselectへ連携する場合、イベント通知する
 				var propagation = propagation_target._$target.prop('_propagation'); 
@@ -81,16 +111,24 @@
 			})
 			.done(function(result) {
 				// ajax実行後（正常時）、ドロップダウンリストの内容を再構築する
-				var html = '';
+				propagation_target._$target.children('[data-group]').remove();
 				result.data.forEach(function(data) {
-					var option = [data, data];
+					var option = [value, data, data];
 					var matcher = data.match(/^([^\s]*)\s+(.*)$/);
 					if(matcher != null) {
-						option = [matcher[1], matcher[2]];
+						option = [value, matcher[1], matcher[2]];
 					}
-					html += '<option value="'+ option[0] + '">' + option[1] + '</option>';
+					var html = propagation_target._options.selectOptionHtml
+						.replace('{0}', option[0])
+						.replace('{1}', option[1])
+						.replace('{2}', option[2]);
+					propagation_target._$target.append(html);
 				});
-				propagation_target._$target.html(html);
+
+				// selectedが指定されている場合、選択状態にする
+				if(result.selected != undefined) {
+					propagation_target._$target.val(result.selected);
+				}
 			});
 		},
 		
@@ -123,6 +161,7 @@
 		this._$propagations = null;
 		this._options = $.extend({
 			selectPropagation: null,
+			selectTrigger: 'change',
 		}, options);
 		
 		if(this._options.selectPropagation != null) {
@@ -133,7 +172,7 @@
 		}
 		
 		// イベントリスナーを登録
-		this._$target.on('changed.bs.select', this._on_change);
+		this._$target.on(this._options.selectTrigger, this._on_change);
 	};
 
 	PropagationPropagator.prototype = {
@@ -143,6 +182,7 @@
 				source: origin? origin.source:this._$target,
 				sourceEvent: origin? origin.sourceEvent:undefined,
 				value: this._$target.val(),
+				init: true,
 			};
 			this._$propagations.triggerHandler('propagation.k2party.selectpicker', parameter);
 		},
@@ -153,6 +193,7 @@
 				source: $(this),
 				sourceEvent: jqEvent,
 				value: $(this).val(),
+				init: false,
 			};
 			this._propagation._$propagations.triggerHandler('propagation.k2party.selectpicker', parameter);
 		},

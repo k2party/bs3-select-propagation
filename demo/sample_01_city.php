@@ -4,7 +4,7 @@ error_log('query[' . $q . ']');
 
 $file = file_get_contents("sample_01.csv");
 
-$datas = ["\t選択してください"];
+$datas = [];
 foreach(explode("\n", $file) as $line) {
     $csv = str_getcsv($line, "\t");
     $csv = array_combine(['pref_code', 'pref_name', 'city_code', 'city_name', 'ward_name'], $csv);
