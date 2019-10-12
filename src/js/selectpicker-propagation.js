@@ -106,6 +106,11 @@
 						.replace('{2}', option[2]);
 					propagation_target._$target.append(html);
 				});
+
+				// selectedが指定されている場合、選択状態にする
+				if(result.selected != undefined) {
+					propagation_target._$target.val(result.selected);
+				}
 			});
 		},
 		
