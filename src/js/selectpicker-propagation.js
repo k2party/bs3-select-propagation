@@ -184,7 +184,9 @@
 				value: this._$target.val(),
 				init: true,
 			};
-			this._$propagations.triggerHandler('propagation.k2party.selectpicker', parameter);
+			this._$propagations.each(function() {
+				$(this).triggerHandler('propagation.k2party.selectpicker', parameter);
+			});
 		},
 		
 		_on_change: function(jqEvent)
@@ -195,7 +197,9 @@
 				value: $(this).val(),
 				init: false,
 			};
-			this._propagation._$propagations.triggerHandler('propagation.k2party.selectpicker', parameter);
+			this._propagation._$propagations.each(function() {
+				$(this).triggerHandler('propagation.k2party.selectpicker', parameter);
+			});
 		},
 	};
 	
